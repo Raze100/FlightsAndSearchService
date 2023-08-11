@@ -4,24 +4,54 @@ class cityRepository{
     async createCity({ name }){
         try{
             const city = await City.create({name});
-            return city;
+            return city; 
         }
         catch(error){
-            throw(error);
+            console.log("Something went wrong in Repository layer");
+            throw{error};
         }
     }
 
-    async deleteCity({ cityId }){
+    async deleteCity( cityId ){
         try{
-            await city.destroy({
+            await City.destroy({
                 where: {
                    id: cityId 
                 }
             });
+            return true;
         }
         catch(error){
-            throw(error);
+            console.log("Something went wrong in Repository layer");
+            throw{error};
         }
+    }
+
+    async updateCity( cityId, data){
+        try {
+          const city = await City.update(data,{
+            where:{
+                id : cityId
+            }
+          });  
+          return city;
+        } 
+        catch (error) {
+            console.log("Something went wrong in Repository layer");
+            throw{error};
+        }
+    }
+
+    async getCity( cityId ){
+        try {
+            const city = await City.findByPk(cityId);
+            return city;
+        } 
+        catch (error) {
+            console.log("Something went wrong in Repository layer");
+            throw{error};
+        }
+
     }
 }
 
