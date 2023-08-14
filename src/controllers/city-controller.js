@@ -1,4 +1,4 @@
-const { CityService } = require('../services/index.js');
+const { CityService } = require('../services/index');
 
 const cityService = new CityService();
 
@@ -23,7 +23,7 @@ const create = async (req, res) => {
     }
 }
 
-const destroy = async (res,res) => {
+const destroy = async (req,res) => {
     try {
         const response = await cityService.deleteCity(req.params.id);
         return res.status(200).json({
@@ -52,7 +52,7 @@ const get = async (req, res) => {
         return res.status(200).json({
             data: response,
             success: true,
-            message: "Successfully fetched a city",
+            message: "Successfully fetched a ciy",
             err : {}
         })
         
@@ -68,7 +68,7 @@ const get = async (req, res) => {
 }
 
 //Patch request -> /city/:id ->req.body
-const update = async (res, req) => {
+const update = async (req, res) => {
     try {
         const city = await cityService.updateCity(req.params.id,req.body);
         return res.status(200).json({
